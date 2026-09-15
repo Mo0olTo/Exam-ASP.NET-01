@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Exam_ASP.NET_01.Classes
 {
-    internal class Answer :ICloneable , IComparable
+    public class Answer :ICloneable , IComparable
     {
         public int AnswerID { get; set; }
         public string AnswerText { get; set; }
