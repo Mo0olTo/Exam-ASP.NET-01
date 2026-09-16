@@ -12,14 +12,11 @@ namespace Exam_ASP.NET_01.Classes
 
         public Exam? Exam { get; private set; }
 
-        public Subject()
-            : this(0, string.Empty)
+        public Subject(): this(0, string.Empty)
         {
         }
 
-        public Subject(
-            int subjectId,
-            string subjectName)
+        public Subject( int subjectId,string subjectName)
         {
             SubjectId = subjectId;
             SubjectName = subjectName;

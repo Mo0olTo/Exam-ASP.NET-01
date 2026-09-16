@@ -23,16 +23,7 @@ namespace Exam_ASP.NET_01.Classes
         }
         public override object Clone()
         {
-            Answer[] clonedAnswers = new Answer[Answers.Length];
-
-            for (int i = 0; i < Answers.Length; i++)
-            {
-                clonedAnswers[i] = (Answer)Answers[i].Clone();
-            }
-
-            Answer clonedRightAnswer = (Answer)RightAnswer.Clone();
-
-            return new MCQQuestion(Header, Body, Mark, clonedAnswers, clonedRightAnswer);
+            return new TrueFalseQuestion(Header, Body, Mark, CloneAnswers(), CloneRightAnswer());
         }
 
      
