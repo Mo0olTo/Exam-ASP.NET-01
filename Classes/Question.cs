@@ -15,17 +15,17 @@ namespace Exam_ASP.NET_01.Classes
         public Answer RightAnswer { get; set; }
         public Answer? UserAnswer { get; set; }
 
-        protected Question(string header, string body, int mark, Answer[] answers, Answer rightAnswer, Answer userAnswer)
+        protected Question(string header, string body, int mark, Answer[] answers, Answer rightAnswer)
         {
             Header = header;
             Body = body;
             Mark = mark;
             Answers = answers;
             RightAnswer = rightAnswer;
-            UserAnswer = userAnswer;
+           
         }
 
-        protected Question() : this(string.Empty, string.Empty, 0, new Answer[0], new Answer(), new Answer())
+        protected Question() : this(string.Empty, string.Empty, 0, new Answer[0], new Answer())
         {
 
         }
