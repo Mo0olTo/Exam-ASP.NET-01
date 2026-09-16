@@ -11,84 +11,49 @@ namespace Exam_ASP.NET_01.Classes
             
         }
 
-        public override void ShowExam()
-        {
-            for(int i =0; i<Questions.Length; i++)
-            {
-                Console.Clear();
-                Question question = Questions[i];
-
-                Console.WriteLine($"Question {i+1}");
-                Console.WriteLine();
-
-                question.Display();
-                Console.WriteLine();
-                Console.Write("Enter your answer ID: ");
-
-                int answerId; 
-                    while (true)
-                {
-                    if (int.TryParse(Console.ReadLine(), out answerId) &&
-                        answerId >= 1 &&
-                        answerId <= question.Answers.Length)
-                    {
-                        break;
-                    }
-
-                    Console.Write($"Please enter a number between 1 and {question.Answers.Length}: ");
-                }
-
-                question.UserAnswer = question.Answers[answerId - 1];
-
-            }
-        }
-
-
         public override void ShowResults()
         {
             Console.Clear();
 
             Console.WriteLine("=================================");
-            Console.WriteLine("      Practical Exam Results");
+
+            Console.WriteLine("Practical Exam Results");
+
             Console.WriteLine("=================================");
+
             Console.WriteLine();
 
             foreach (Question question in Questions)
             {
-                Console.WriteLine($"Question: {question.Body}");
+                Console.WriteLine( $"Question: {question.Body}");
 
-                Console.WriteLine($"Your Answer ====> {question.UserAnswer?.AnswerText}");
+                Console.WriteLine($"Your Answer ====> " +$"{question.UserAnswer?.AnswerText}");
 
-                Console.WriteLine($"Correct Answer ====> {question.RightAnswer.AnswerText}");
+                Console.WriteLine( $"Correct Answer ====> " +$"{question.RightAnswer.AnswerText}");
 
                 Console.WriteLine();
             }
 
-            int grade = CalculateGrade();
+            int grade =CalculateGrade();
+
             int totalMarks = GetTotalMarks();
 
-            Console.WriteLine($"Your Grade is {grade} from {totalMarks}");
+            Console.WriteLine( $"Your Grade is {grade} from {totalMarks}");
 
-            Console.WriteLine($"Time = {ElapsedTime.TotalSeconds:F2} seconds");
+            Console.WriteLine( $"Time = " +$"{ElapsedTime.TotalSeconds:F2} seconds");
 
             Console.WriteLine();
+
             Console.WriteLine("Thank You ! ('',)");
         }
 
         public override object Clone()
         {
-            Question[] clonedQuestions = new Question[Questions.Length];
-
-            for (int i = 0; i < Questions.Length; i++)
-            {
-                clonedQuestions[i] =(Question)Questions[i].Clone();
-            }
-
-            return new PracticalExam(Time,NumberOfQuestions, clonedQuestions);
+            return new PracticalExam(Time, NumberOfQuestions, CloneQuestions());
         }
 
 
-
+        
 
     }
 }

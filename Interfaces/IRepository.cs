@@ -4,9 +4,13 @@ using System.Text;
 
 namespace Exam_ASP.NET_01.Interfaces
 {
-    public interface IExam
+    public interface IRepository <T>
     {
-        void ShowExam();
-        void ShowResults();
+
+        void Add(T item);
+
+        T Get(int index);
+
+        int Count { get; }
     }
 }

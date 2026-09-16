@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Exam_ASP.NET_01.Classes
 {
-    public abstract class Exam : ICloneable , IComparable
+    public abstract class Exam : ICloneable , IComparable 
     {
         public int Time { get; set; }
         public int NumberOfQuestions { get; set; }
@@ -23,11 +23,31 @@ namespace Exam_ASP.NET_01.Classes
             Questions = questions;
         }
 
-        public abstract void ShowExam();
+        public virtual void ShowExam()
+        {
+            for (int i = 0; i < Questions.Length; i++)
+            {
+                Console.Clear();
 
-        public abstract void ShowResults();
+                Question question = Questions[i];
 
-        public abstract object Clone();
+                Console.WriteLine($"Question {i + 1}");
+
+                Console.WriteLine();
+
+                question.Display();
+
+                Console.WriteLine();
+
+                Console.Write("Enter your answer ID: ");
+
+                int answerId =Program.ReadInt(1, question.Answers.Length);
+
+                question.UserAnswer = question.Answers[answerId - 1];
+            }
+        }
+
+       
 
         public virtual int CalculateGrade()
         {
@@ -43,6 +63,7 @@ namespace Exam_ASP.NET_01.Classes
 
             return grade;
         }
+
 
         public virtual void StartExam()
         {
@@ -68,6 +89,20 @@ namespace Exam_ASP.NET_01.Classes
             return totalMarks;
         }
 
+        protected Question[] CloneQuestions()
+        {
+            Question[] clonedQuestions = new Question[Questions.Length];
+
+            for (int i = 0;i < Questions.Length; i++)
+            {
+                clonedQuestions[i] = (Question)Questions[i].Clone();
+            }
+
+            return clonedQuestions;
+        }
+        public abstract void ShowResults();
+
+        public abstract object Clone();
         public virtual int CompareTo(object? obj)
         {
             if (obj is not Exam other)

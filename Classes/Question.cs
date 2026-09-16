@@ -34,6 +34,24 @@ namespace Exam_ASP.NET_01.Classes
 
         public abstract object Clone();
 
+        protected Answer[] CloneAnswers()
+        {
+            Answer[] clonedAnswers = new Answer[Answers.Length];
+
+            for (int i = 0;
+                 i < Answers.Length;
+                 i++)
+            {
+                clonedAnswers[i] = (Answer)Answers[i].Clone();
+            }
+
+            return clonedAnswers;
+        }
+        protected Answer CloneRightAnswer()
+        {
+            return (Answer)RightAnswer.Clone();
+        }
+
 
         public virtual int CompareTo(object? obj)
         {
